@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/20-professional/21-scipp/21-01-iris/iris/power-saving-options/","tags":["Stub"],"noteIcon":"","created":"2024-08-24T11:29:11.277-07:00","updated":"2024-09-03T13:02:48.805-07:00"}
+{"dg-publish":true,"dg-path":"IRIS/Power Saving Options.md","permalink":"/iris/power-saving-options/","tags":["Stub"],"noteIcon":"","created":"2024-08-24T11:29:11.277-07:00","updated":"2024-09-03T13:02:48.805-07:00"}
 ---
 
 Currently, we do not have any considerations for battery longevity as the board is plugged in directly via USB. However, we can use a combination of the following in the future:

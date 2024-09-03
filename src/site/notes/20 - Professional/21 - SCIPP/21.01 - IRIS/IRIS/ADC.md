@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/20-professional/21-scipp/21-01-iris/iris/adc/","noteIcon":"","created":"2024-08-22T23:55:42.853-07:00","updated":"2024-09-03T13:00:20.039-07:00"}
+{"dg-publish":true,"dg-path":"IRIS/ADC.md","permalink":"/iris/adc/","noteIcon":"","created":"2024-08-22T23:55:42.853-07:00","updated":"2024-09-03T13:00:20.039-07:00"}
 ---
 
 

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/20-professional/21-scipp/21-01-iris/iris/dma-controller/","tags":["Stub"],"noteIcon":"","created":"2024-08-22T23:54:08.593-07:00","updated":"2024-09-03T13:00:31.703-07:00"}
+{"dg-publish":true,"dg-path":"IRIS/DMA Controller.md","permalink":"/iris/dma-controller/","tags":["Stub"],"noteIcon":"","created":"2024-08-22T23:54:08.593-07:00","updated":"2024-09-03T13:00:31.703-07:00"}
 ---
 
 *Many paragraphs were paraphrased or lifted straight from the datasheet!*
