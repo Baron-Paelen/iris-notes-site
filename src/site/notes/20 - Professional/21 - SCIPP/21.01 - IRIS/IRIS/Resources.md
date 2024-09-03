@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/20-professional/21-scipp/21-01-iris/iris/resources/"}
+{"dg-publish":true,"permalink":"/20-professional/21-scipp/21-01-iris/iris/resources/","created":"2024-08-24T12:11:50.402-07:00","updated":"2024-09-03T13:03:01.694-07:00"}
 ---
 
 
