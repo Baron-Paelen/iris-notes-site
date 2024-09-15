@@ -1,20 +1,24 @@
 ---
-{"dg-publish":true,"dg-path":"IRIS/DMA Controller.md","permalink":"/iris/dma-controller/","tags":["Stub"],"noteIcon":"","created":"2024-08-22T23:54:08.593-07:00","updated":"2024-09-03T13:00:31.703-07:00"}
+{"dg-publish":true,"dg-path":"IRIS/DMA Controller.md","permalink":"/iris/dma-controller/","tags":["Stub"],"noteIcon":"","created":"2024-08-22T23:54:08.593-07:00","updated":"2024-09-12T20:58:34.565-07:00"}
 ---
 
 *Many paragraphs were paraphrased or lifted straight from the datasheet!*
+# General Information
+
+
 > [!tldr]- Datasheet Reference
 > [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/Resources#^d11da6\|Section 22]]
 
+The SAMD51's  *DMAC* contains both DMA capabilities and a CRC engine (which we don't use). The *DMAC* can move data across RAM and peripherals without [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/M4 Board\|CPU]] intervention. This lets us simultaneously collect [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS-Notes-Site/docs/ADC\|ADC]] samples while writing those samples to SD, allowing a constant collection rate.
 
-The SAMD51's  *DMAC* contains both DMA capabilities and a CRC engine. The *DMAC* can move data across RAM and peripherals without [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/M4 Board\|CPU]] intervention.
-
-The DMA engine works with several *DMA channels*, with only one being considered *active* at a time. These channels can receive *transfer triggers* which generate *transfer requests*. These requests are handled by the *arbiter*, which decides which channel will be active. This will then fetch a user-defined *descriptor* to the active channel, and then finally execute the data transfer. A *descriptor* describes how a block transfer should be carried out by the DMAC.
+The DMA engine works with several *DMA channels*, with only one being considered the *active channel* at any time. These channels can receive *transfer triggers* which generate *transfer requests*. These requests are handled by the *arbiter*, which decides which channel will be *active*. This will then fetch a user-defined *descriptor* for the active channel, and then finally execute the data transfer. A *descriptor* describes how a block transfer should be carried out by the DMAC. 
 
 These *descriptors* must be stored in a contiguous block of SRAM, starting from the address written to the **BASEADDR** (*descriptor memory section*) and **WRBADDR** (*write-back memory section*) registers. The *descriptor memory section* must hold the first transfer descriptors ordered by channel number. **BASEADDR** therefore points only to the first transfer descriptor of channel 0.
 
-> [!tip]+
-> Note that the DMAC's SRAM registers (**BTRCTRL, BTCNT, . . ., DESCADDR**) only hold the currently active descriptor's details. This is why there's a writeback - to keep the current descriptor in memory somewhere when the DMAC switches to another descriptor.
+**All of this is described in further detail below!**
+
+> [!info]+
+> Note that the DMAC's internal memory only holds the currently active descriptor's details. This is why there's a writeback - to keep the current descriptor in memory somewhere when the DMAC switches to another descriptor.
 > 
 
 > [!tip]+
@@ -41,7 +45,7 @@ These *descriptors* must be stored in a contiguous block of SRAM, starting from 
 > [!info]- Block Diagram 
 > ![Pasted image 20240825191625.png](/img/user/00%20-%20System/09%20-%20External%20Attachments/Pasted%20image%2020240825191625.png)
 
-> [!info]- Common Vernacular
+> [!info]+ Common Vernacular
 > - TODO!
 > -  **Transfer Descriptor**
 > 	- Describes how a block transfer should be executed
@@ -64,11 +68,7 @@ These *descriptors* must be stored in a contiguous block of SRAM, starting from 
 
 # DMAC Initialization
 ## General Initialization
-Before enabling the DMAC, the **BASEADDR** and **WRBADDR** registers must be populated. These registers are *enable protected*, meaning they can only be set when the DMAC is disabled. **CTRL**'s bits 8-11 must be set as well; a `1` written to these bits will enable transfer requests of the appropriate priority level:
-- **CTRL[8]**: Priority level 1 (lowest)
-- **CTRL[9]**: Priority level 2 
-- **CTRL[10]**: Priority level 3 
-- **CTRL[11]**: Priority level 4 (highest)
+Before enabling the DMAC, the **BASEADDR** and **WRBADDR** registers must be populated. These registers are *enable protected*, meaning they can only be set when the DMAC is disabled. 
 
 ## DMA Channel Initialization
 Before enabling a *channel*, the channel and the corresponding *first transfer descriptor* must be configured.
@@ -80,12 +80,26 @@ Before enabling a *channel*, the channel and the corresponding *first transfer d
 - A *trigger source* must be written to **CHCTRLAx.TRGSRC**. The sources can be found in section **22.8.16** of the [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/Resources#^d11da6\|SAMD51 Datasheet]].
 
 ### Transfer Descriptor Configuration
-- The *Beat Size* must be configured in **BTCRL.BEATSIZE**: 
+
+> [!tip] A descriptor can be stored as a simple struct:
+> ```cpp
+> typedef struct
+> {
+> 	uint16_t btctrl;
+> 	uint16_t btcnt;
+> 	uint32_t srcaddr;
+> 	uint32_t dstaddr;
+> 	uint32_t descaddr;
+> } descriptor;
+> ```
+
+- The *Beat Size* must be configured in the descriptor's **BTCRL.BEATSIZE**: 
 	![Pasted image 20240831145149.png](/img/user/00%20-%20System/09%20-%20External%20Attachments/Pasted%20image%2020240831145149.png)
-- The *descriptor* must be be made valid by writing a `1` to **BTCTRL.VALID**
-- The *number of beats per block transfer* must be set by writing to the **BTCNT** register.
-- The *source address* for the block transfer must be set by writing to the **SRCADDR** register.
-- The *destination address* for the block transfer must be set by writing to the **DSTADDR** register.
+- The *descriptor* must be be made valid by writing a `1` to the descriptor's **BTCTRL.VALID** field.
+- The *number of beats per block transfer* must be set by writing to the descriptor's **BTCNT** field.
+- The *source address* for the block transfer must be set by writing to the descriptor's **SRCADDR** field.
+- The *destination address* for the block transfer must be set by writing to the descriptor's **DSTADDR** field.
+- The *address of the next descriptor* must be set in the descriptor's **DESCADDR** field. *If it is the last descriptor in the linked list, then this must be set to **0x0***
 
 ## Enabling the DMAC and Channels
 The DMAC will only function properly if a channel is configured properly and if a descriptor is configured properly before enabling. The DMAC is enabled by writing a `1` to **CTRL.DMAENABLE**, and disabled by writing a `0`. Once configured, a DMA channel can be enabled by writing a `1` to the corresponding **CHCTRLAx.ENABLE** bit. 
