@@ -1,12 +1,12 @@
 ---
-{"dg-publish":true,"dg-path":"IRIS/IRIS.md","permalink":"/iris/iris/","tags":["gardenEntry"],"noteIcon":"","created":"2024-08-23T14:09:13.301-07:00","updated":"2024-09-14T17:33:09.621-07:00"}
+{"dg-publish":true,"dg-path":"IRIS/IRIS.md","permalink":"/iris/iris/","tags":["gardenEntry"],"noteIcon":"","created":"2024-08-23T14:09:13.301-07:00","updated":"2024-09-22T19:35:45.611-07:00"}
 ---
 
 Welcome to the IRIS Notes! This site was made in Obsidian using the [Digital Garden extension](https://dg-docs.ole.dev/), hosted on [GitHub](https://github.com/Baron-Paelen/iris-notes-site), and deployed using [Vercel](https://vercel.com). Many of the pages here heavily paraphrase or quote the [SAMD51 Datasheet](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU32/ProductDocuments/DataSheets/SAM-D5x-E5x-Family-Data-Sheet-DS60001507.pdf).
 
 The purpose of this website is to hopefully demystify the software side of IRIS by presenting a more digestible version of the SAMD51's datasheet. As of the creation of this website, we've started migrating to the [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS-Notes-Site/docs/M4 Board\|M4 Board]], so most of the specifics will be tailored to the SAMD51/M4 board. 
 
-Below you will find the currently available notes.
+Below you will find the currently available notes. The *Code Analysis* folder contains notes on code lifted from external sources to help build intuition.
 
 
 - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/ADC\|ADC]]
@@ -16,6 +16,7 @@ Below you will find the currently available notes.
 - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/IRIS\|IRIS]]
 - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/M4 Board\|M4 Board]]
 - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/Power Saving Options\|Power Saving Options]]
+- [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/Quick Start\|Quick Start]]
 - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/Resources\|Resources]]
 
 
@@ -70,3 +71,16 @@ Another flaw lay in the fact that the M0 only has 1 ADC, and the staggered readi
 ## M4 Approach
 In order to allow concurrent data collection and SD writing, we use the M4's SAMD51's [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/DMA Controller\|DMA controller]] to control the 2 onboard [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/ADC\|ADCs]]. The DMAC is configured to collect samples from the ADCs into a buffer. Once the buffer is filled, the CPU begins the process of writing the buffer's contents into the SD card. The DMAC then starts new conversions on the ADCs.
 
+### Buffers
+Each ADC will get its own result buffer. Each half of a buffer will take turns being written to. This means that any one time, one half will be *volatile*, being operated on by the DMAC, while the other half will be ready for operations, like writing to SD.
+
+***We may switch to one, single buffer containing all results later.*** This may help during the SD write process.
+### ADCs
+The current plan is for each ADC to be given 2 pins each to alternate between. This lessens the gaps between each pin's samples. Using *DMA Sequencing*, each ADC will be controlled via their own sequencing descriptor which will be responsible for updating the ADC's next input. These descriptors will constantly point back to themselves, allowing us to repeat the input switching endlessly. We will refer to these descriptors as *input descriptors.*
+
+Each ADC will also get two descriptors to handle collecting the ready conversions from the result registers (four total output descriptors). The first descriptor is responsible for entering results into the first half of the respective buffer, while the second descriptor is responsible for entering results into the second half of the respective buffer. These descriptors will be referred to as *output descriptors*.
+
+***We may switch to one, single buffer containing all results later.*** This may help during the SD write process. This can be done by changing the `dstaddr` field for the *output descriptors*.
+
+### SD
+TODO.

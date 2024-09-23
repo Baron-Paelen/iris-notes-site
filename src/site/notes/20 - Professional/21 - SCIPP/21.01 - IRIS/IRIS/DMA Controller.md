@@ -1,8 +1,10 @@
 ---
-{"dg-publish":true,"dg-path":"IRIS/DMA Controller.md","permalink":"/iris/dma-controller/","tags":["Stub"],"noteIcon":"","created":"2024-08-22T23:54:08.593-07:00","updated":"2024-09-12T20:58:34.565-07:00"}
+{"dg-publish":true,"dg-path":"IRIS/DMA Controller.md","permalink":"/iris/dma-controller/","tags":["Stub"],"noteIcon":"","created":"2024-08-22T23:54:08.593-07:00","updated":"2024-09-14T19:52:47.609-07:00"}
 ---
 
 *Many paragraphs were paraphrased or lifted straight from the datasheet!*
+
+### **If you're looking for a quick-start to using the DMAC, check out [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/Quick Start\|Quick Start]]!**
 # General Information
 
 
@@ -20,6 +22,8 @@ These *descriptors* must be stored in a contiguous block of SRAM, starting from 
 > [!info]+
 > Note that the DMAC's internal memory only holds the currently active descriptor's details. This is why there's a writeback - to keep the current descriptor in memory somewhere when the DMAC switches to another descriptor.
 > 
+{ #b2d110}
+
 
 > [!tip]+
 > Note that the DMAC's other registers (e.g. all the **CHTRLAx** and **CHTRLBx** registers) are per-channel.
@@ -80,6 +84,8 @@ Before enabling a *channel*, the channel and the corresponding *first transfer d
 - A *trigger source* must be written to **CHCTRLAx.TRGSRC**. The sources can be found in section **22.8.16** of the [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/Resources#^d11da6\|SAMD51 Datasheet]].
 
 ### Transfer Descriptor Configuration
+{ #4baaaf}
+
 
 > [!tip] A descriptor can be stored as a simple struct:
 > ```cpp
