@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-path":"IRIS/IRIS.md","permalink":"/iris/iris/","tags":["gardenEntry"],"noteIcon":"","created":"2024-08-23T14:09:13.301-07:00","updated":"2024-09-22T19:35:45.611-07:00"}
+{"dg-publish":true,"dg-path":"IRIS/IRIS.md","permalink":"/iris/iris/","tags":["gardenEntry"],"noteIcon":"","created":"2024-08-23T14:09:13.301-07:00","updated":"2024-10-10T12:47:33.433-07:00"}
 ---
 
 Welcome to the IRIS Notes! This site was made in Obsidian using the [Digital Garden extension](https://dg-docs.ole.dev/), hosted on [GitHub](https://github.com/Baron-Paelen/iris-notes-site), and deployed using [Vercel](https://vercel.com). Many of the pages here heavily paraphrase or quote the [SAMD51 Datasheet](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU32/ProductDocuments/DataSheets/SAM-D5x-E5x-Family-Data-Sheet-DS60001507.pdf).
@@ -13,6 +13,7 @@ Below you will find the currently available notes. The *Code Analysis* folder co
 - **Code Analysis**
     - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/Code Analysis/raidersnake's ADC multiplexing\|raidersnake's ADC multiplexing]]
 - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/DMA Controller\|DMA Controller]]
+- [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/False Sharing\|False Sharing]]
 - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/IRIS\|IRIS]]
 - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/M4 Board\|M4 Board]]
 - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/Power Saving Options\|Power Saving Options]]
@@ -83,4 +84,4 @@ Each ADC will also get two descriptors to handle collecting the ready conversion
 ***We may switch to one, single buffer containing all results later.*** This may help during the SD write process. This can be done by changing the `dstaddr` field for the *output descriptors*.
 
 ### SD
-TODO.
+TODO. #Stub 
