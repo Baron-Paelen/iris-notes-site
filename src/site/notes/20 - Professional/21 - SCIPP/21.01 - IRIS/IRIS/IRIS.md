@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-path":"IRIS/IRIS.md","permalink":"/iris/iris/","tags":["gardenEntry"],"noteIcon":"","created":"2024-08-23T14:09:13.301-07:00","updated":"2024-10-10T12:47:33.433-07:00"}
+{"dg-publish":true,"dg-path":"IRIS/IRIS.md","permalink":"/iris/iris/","tags":["gardenEntry"],"noteIcon":"","created":"2024-08-23T14:09:13.301-07:00","updated":"2024-10-10T13:47:38.005-07:00"}
 ---
 
 Welcome to the IRIS Notes! This site was made in Obsidian using the [Digital Garden extension](https://dg-docs.ole.dev/), hosted on [GitHub](https://github.com/Baron-Paelen/iris-notes-site), and deployed using [Vercel](https://vercel.com). Many of the pages here heavily paraphrase or quote the [SAMD51 Datasheet](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU32/ProductDocuments/DataSheets/SAM-D5x-E5x-Family-Data-Sheet-DS60001507.pdf).
@@ -85,3 +85,16 @@ Each ADC will also get two descriptors to handle collecting the ready conversion
 
 ### SD
 TODO. #Stub 
+
+### Timestamps
+TODO. #Stub 
+
+### Places that need work or investigation?
+- Should our buffer(s) for the ADC be 512 bytes or multiples of 512 bytes? Will the SD card overhead get in the way of bigger buffers?
+- Should we have one buffer and interleave everything into it instead of the two right now?
+- What's the best way to get timestamps for each reading or set of readings? Get a `micros()` call every time a DMA transfer is complete and do slight math? 
+- **Best way to make sure timing aligns?** 
+	- **t1:** time to fill the buffer(s) w/ staggered samples (possibly averaged) to be taken and dropped into buffer. 
+	- **t2:** time for SD to write the buffer and finish
+	- **t3:** time to add timings to the buffers, or create a new buffer that holds structs which match the current `serial_binary` format.
+	- t1+t3 must be slightly less than t2, but the buffer must hold evenly spaced data, or damn near it. If the data isn't evenly spaced, then getting accurate timing for each sample will be difficult.
