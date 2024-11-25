@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-path":"IRIS/DMA Controller.md","permalink":"/iris/dma-controller/","tags":["Stub"],"noteIcon":"","created":"2024-08-22T23:54:08.593-07:00","updated":"2024-09-14T19:52:47.609-07:00"}
+{"dg-publish":true,"dg-path":"IRIS/DMA Controller.md","permalink":"/iris/dma-controller/","tags":["Stub"],"noteIcon":"","created":"2024-08-24T11:25:18.232-07:00","updated":"2024-09-14T19:52:47.609-07:00"}
 ---
 
 *Many paragraphs were paraphrased or lifted straight from the datasheet!*
