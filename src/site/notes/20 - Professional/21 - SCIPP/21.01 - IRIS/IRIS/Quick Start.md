@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-path":"IRIS/Quick Start.md","permalink":"/iris/quick-start/","noteIcon":"","created":"2024-11-06T15:07:28.124-08:00","updated":"2024-11-25T15:50:43.513-08:00"}
+{"dg-publish":true,"dg-path":"IRIS/Quick Start.md","permalink":"/iris/quick-start/","noteIcon":"","created":"2024-11-06T15:07:28.124-08:00","updated":"2024-11-25T15:54:09.499-08:00"}
 ---
 
 ## Setting Up Your Computer and M0/M4!
@@ -131,3 +131,6 @@ $$
 	- Overlapping plots
 		- Use the *pan tool* to move the window around.
 		- If that alone doesn't work, try hitting **r**.
+
+#### Saving Data
+- If the `--save` or `-s` flag is used, indicating readings should be saved, the **script**will begin saving binary files into the `./data/` directory located in the **script**'s parent directory.
