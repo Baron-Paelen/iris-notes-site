@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-path":"IRIS/Quick Start.md","permalink":"/iris/quick-start/","noteIcon":"","created":"2024-11-06T15:07:28.124-08:00","updated":"2024-11-25T16:09:07.254-08:00"}
+{"dg-publish":true,"dg-path":"IRIS/Quick Start.md","permalink":"/iris/quick-start/","noteIcon":"","created":"2024-11-06T15:07:28.124-08:00","updated":"2024-11-25T16:54:50.241-08:00"}
 ---
 
 ## Setting Up Your Computer and M0/M4!
@@ -10,8 +10,7 @@
 > Also, if I refer to a **script**, I am most likely referring to a *Python program* that will run on your computer/laptop. If I refer to a **sketch**, I am most likely referring to an Arduino program that will run on your MCU.
 >
 > > [!tip]- Regarding the lab's **CentOS computer!**
-> > If working with the currently-running IRIS unit in the lab, you can skip most of the steps below! The *repository* is stored at `~/iris/IRIS-Project/`, so you don't need to try to download anything. Jump straight to the **Running the Script!** section. *Make sure to halt the currently running data collection script or you will not be able to use the new script.*
-> 
+> > **CentOS 7** is simply too old to support the necessary versions of Python, and is EOL. As such, I will wait until the new IRIS laptop is set up before I update this section.
 
 
 > [!tip] 
