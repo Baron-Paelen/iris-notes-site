@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-path":"IRIS/Quick Start.md","permalink":"/iris/quick-start/","noteIcon":"","created":"2024-11-06T15:07:28.124-08:00","updated":"2024-11-25T16:54:50.241-08:00"}
+{"dg-publish":true,"dg-path":"IRIS/Quick Start.md","permalink":"/iris/quick-start/","noteIcon":"","created":"2024-11-06T15:07:28.124-08:00","updated":"2024-11-25T22:07:11.617-08:00"}
 ---
 
 ## Setting Up Your Computer and M0/M4!
@@ -65,6 +65,8 @@ Now we'll run a test program on your MCU to make sure the basics are set up prop
 2. In *Arduino IDE*, you should see a dropdown menu in the top left that looks something like this:
 	- ![Pasted image 20241125142646.png|300](/img/user/00%20-%20System/09%20-%20External%20Attachments/Pasted%20image%2020241125142646.png)
 	- *Windows* users will see ports such as `COM6` or `COM4`
+	- *Mac* users will see ports such as `/dev/cu.usbmodem1101`
+		- You may see a pop up to install **xcrun**. Allow the install to finish before proceeding.
 	- *Linux* users will see ports such as `/dev/ttyACM0`
 1. If your setup is correct, you should see an entry in there for every connected MCU. Select the one you'd like to test.
 2. Click the -> button in the top left to compile and upload the example sketch onto your MCU!
@@ -92,6 +94,14 @@ Please make sure you are looking at the `serial_log_binary` branch found [here](
 			- Fedora: `sudo dnf install python3-matplotlib`
 			- Red Hat: `sudo yum install python3-matplotlib`
 			- Arch: `sudo pacman -S python-matplotlib`
+- `pyserial`
+	- In terminal, run the following depending on your OS:
+		- **Should work for most:** `pip install pyserial
+		- **If your version of python came from your Linux distro's package manager:**
+			- Debian/Ubuntu: `sudo apt-get install python3-serial`
+			- Fedora: `sudo dnf install python3-serial`
+			- Red Hat: `sudo yum install python3-serial
+			- Arch: `sudo pacman -S python-serial
 #### Arduino
 - MCU: **Adafruit Feather M0**
 	- M4 untested but should work *in theory*
@@ -105,7 +115,7 @@ Please make sure you are looking at the `serial_log_binary` branch found [here](
 	- ![Pasted image 20241125142646.png|300](/img/user/00%20-%20System/09%20-%20External%20Attachments/Pasted%20image%2020241125142646.png)
 	- **Make note of the listed port!**
 		- In this case, my MCU is connected to serial port `/dev/ttyACM0`
-3. Click the -> button in the top left to compile and upload the **sketch**.
+3. Click the -> button in the top left to compile and upload the **sketch**. Wait for it to complete.
 	- ![Pasted image 20241125144350.png|150](/img/user/00%20-%20System/09%20-%20External%20Attachments/Pasted%20image%2020241125144350.png)
 4. The MCU should now be ready for use in conjunction with the **script**.
 ### Running the Script!
@@ -113,7 +123,7 @@ Please make sure you are looking at the `serial_log_binary` branch found [here](
 2. Run `python ./serial_importer_all_in_one.py` to see the general help message. Please read this to get a better understanding of the functionality provided.
 	- The help message may tell you to use `./import_serial_binary.py` instead of `./serial_importer_all_in_one.py`. Don't listen to it :)
 	- Note that the `-l` flag may not work properly on **Linux** devices. Refer back to *Step 2* of the *MCU Setup* section above to find the proper port.
-3. Once you're ready, try running `python serial_importer_all_in_one.py --plot port=/dev/ttyACM0 baud=9600 hz=50 sec=10` to see the *live plotter*.
+3. Once you're ready, try running `python serial_importer_all_in_one.py --plot port=<port for M0> baud=9600 hz=50 sec=10` to see the *live plotter*. **Type out the same port you used in the Arduino IDE.**
 	- 50 points per second
 	- 10 second time window
 ### General Script Info
