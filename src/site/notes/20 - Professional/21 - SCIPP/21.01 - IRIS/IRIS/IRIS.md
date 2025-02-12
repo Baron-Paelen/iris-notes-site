@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-path":"IRIS/IRIS.md","permalink":"/iris/iris/","tags":["gardenEntry"],"noteIcon":"","created":"2024-08-24T11:25:18.078-07:00","updated":"2024-11-06T15:07:33.207-08:00"}
+{"dg-publish":true,"dg-path":"IRIS/IRIS.md","permalink":"/iris/iris/","tags":["gardenEntry"],"noteIcon":"","created":"2024-08-24T11:25:18.078-07:00","updated":"2025-02-04T15:31:08.969-08:00"}
 ---
 
 Welcome to the IRIS Notes! This site was made in Obsidian using the [Digital Garden extension](https://dg-docs.ole.dev/), hosted on [GitHub](https://github.com/Baron-Paelen/iris-notes-site), and deployed using [Vercel](https://vercel.com). Many of the pages here heavily paraphrase or quote the [SAMD51 Datasheet](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU32/ProductDocuments/DataSheets/SAM-D5x-E5x-Family-Data-Sheet-DS60001507.pdf).
@@ -10,8 +10,10 @@ Below you will find the currently available notes. The *Code Analysis* folder co
 
 
 - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/ADC\|ADC]]
+- [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/Analog Board Notes\|Analog Board Notes]]
 - **Code Analysis**
     - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/Code Analysis/raidersnake's ADC multiplexing\|raidersnake's ADC multiplexing]]
+    - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/Code Analysis/SdFat ExFatLogger\|SdFat ExFatLogger]]
 - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/DMA Controller\|DMA Controller]]
 - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/IRIS\|IRIS]]
 - [[20 - Professional/21 - SCIPP/21.01 - IRIS/IRIS/M4 Board\|M4 Board]]

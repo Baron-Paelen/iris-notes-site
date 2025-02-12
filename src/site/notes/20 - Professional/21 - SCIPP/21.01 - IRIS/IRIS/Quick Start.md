@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-path":"IRIS/Quick Start.md","permalink":"/iris/quick-start/","noteIcon":"","created":"2024-11-06T15:07:28.124-08:00","updated":"2024-11-25T22:07:11.617-08:00"}
+{"dg-publish":true,"dg-path":"IRIS/Quick Start.md","permalink":"/iris/quick-start/","noteIcon":"","created":"2024-11-06T15:07:28.124-08:00","updated":"2025-02-12T10:33:19.488-08:00"}
 ---
 
 ## Setting Up Your Computer and M0/M4!
@@ -75,14 +75,13 @@ Now we'll run a test program on your MCU to make sure the basics are set up prop
 
 
 ## Using the All-In-One Serial Importer Script!
-
 ### Dependencies
 
 > [!info] Acknowledging VENVs
 > I know this isn't quite the cleanest way of handling our dependencies. Once I've cleaned up the current GitHub repository more, I will work on updating all relevant scripts to work with Python's virtual environments.
 #### The Code 
 Please make sure you are looking at the `serial_log_binary` branch found [here](https://github.com/IRIS-Digital-Dosimeter/IRIS-Project/tree/serial_log_binary)!
-- The **script** can be found at: `IRIS-Project/analysis/scripts/serial import scripts/serial_importer_all_in_one/serial_importer_all_in_one.py`.
+- The **script** can be found at: `IRIS-Project/analysis/scripts/serial_importer_all_in_one/serial_importer_all_in_one.py`.
 - You will find the **sketch** at: `IRIS-Project/packages/serial_log`.
 	- **You need all three files in here. Not just `serial_log.ino`**
 #### Python
@@ -103,10 +102,8 @@ Please make sure you are looking at the `serial_log_binary` branch found [here](
 			- Red Hat: `sudo yum install python3-serial
 			- Arch: `sudo pacman -S python-serial
 #### Arduino
-- MCU: **Adafruit Feather M0**
-	- M4 untested but should work *in theory*
-	- may require slight modifications to the sketch.
-- No special libraries required.
+- MCU: **Adafruit Feather M0** or **Adafruit Feather M4**
+- No special libraries required
 
 ### MCU Setup
 1. Open `serial_log.ino` using *Arduino IDE*, or open *Arduino IDE* first and go to *File->Open...* to open `serial_log.ino`.
@@ -114,7 +111,7 @@ Please make sure you are looking at the `serial_log_binary` branch found [here](
 2. Use the dropdown menu to select your MCU:
 	- ![Pasted image 20241125142646.png|300](/img/user/00%20-%20System/09%20-%20External%20Attachments/Pasted%20image%2020241125142646.png)
 	- **Make note of the listed port!**
-		- In this case, my MCU is connected to serial port `/dev/ttyACM0`
+		- In this case, the MCU is connected to serial port `/dev/ttyACM0`
 3. Click the -> button in the top left to compile and upload the **sketch**. Wait for it to complete.
 	- ![Pasted image 20241125144350.png|150](/img/user/00%20-%20System/09%20-%20External%20Attachments/Pasted%20image%2020241125144350.png)
 4. The MCU should now be ready for use in conjunction with the **script**.
@@ -136,15 +133,17 @@ $$
 \frac{\text{printer reading}*3.3}{4096*16} = \text{3.3V reading}
 $$
 #### Live Plotter
-- Currently the *live plotter* only reads from **pin A0**.
-- The *live plotter* will slowly degrade in performance over time the higher the `hz` flag is set.
-- If you use your mouse and the *pan tool* in the `matplotlib` window to move around, and want to return to the live view, hit **r** on your keyboard to reset the view.
+- Currently the *live plotter* only reads from **pins A0 and A1**
+	- Flexible inputs are a WIP for now!
+- The *live plotter* has a max visual refresh rate of 30hz for performance reasons, but *data will be collected at the specified rate*
+- The *Pan Tool* can be used to **move** vertically
+- The *Zoom Tool* can be used to **scale** vertically
+- Hitting **"r"** on your keyboard will reset to default view/scaling
 - **The live plotter is a bit buggy!** You may notice:
-	- Crashes when trying to use the **reset** feature before the time window has filled
-		- End the script and run it again.
 	- Overlapping plots
 		- Use the *pan tool* to move the window around.
 		- If that alone doesn't work, try hitting **r**.
 
 #### Saving Data
 - If the `--save` or `-s` flag is used, indicating readings should be saved, the **script** will begin saving binary files into the `./data/` directory located in the **script**'s parent directory.
+	- WIP: a CLI flag to allow custom save directories
