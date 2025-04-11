@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-path":"IRIS/Quick Start.md","permalink":"/iris/quick-start/","noteIcon":"","created":"2024-11-06T15:07:28.124-08:00","updated":"2025-02-12T10:33:19.488-08:00"}
+{"dg-publish":true,"dg-path":"IRIS/Quick Start.md","permalink":"/iris/quick-start/","noteIcon":"","created":"2024-09-14T17:42:02.920-07:00","updated":"2025-02-12T10:33:19.488-08:00"}
 ---
 
 ## Setting Up Your Computer and M0/M4!

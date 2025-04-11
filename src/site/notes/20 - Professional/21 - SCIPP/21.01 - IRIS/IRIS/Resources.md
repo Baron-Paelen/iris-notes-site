@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"dg-path":"IRIS/Resources.md","permalink":"/iris/resources/","noteIcon":"","created":"2024-08-24T12:11:50.402-07:00","updated":"2024-09-04T15:42:50.759-07:00"}
+{"dg-publish":true,"dg-path":"IRIS/Resources.md","permalink":"/iris/resources/","noteIcon":"","created":"2024-08-24T12:11:50.402-07:00","updated":"2025-02-15T15:38:18.500-08:00"}
 ---
 
 
@@ -15,3 +15,9 @@
 - [Possible Issues With Datalogging + SD/SPI](https://github.com/greiman/SdFat/issues/483)
 - [Adafruit SdFat might not be the move :(](https://github.com/greiman/SdFat/issues/434)
 - [More SPI speedup stuff for the M0](https://forum.arduino.cc/t/faster-spi-on-the-zero/345296/9)
+- [SdFat - Adafruit Fork - Arduino Reference](https://reference.arduino.cc/reference/en/libraries/sdfat-adafruit-fork/)
+{ #9eb02b}
+
+	- [GitHub - greiman/SdFat: Arduino FAT16/FAT32 exFAT Library](https://github.com/greiman/SdFat)
+{ #1259ff}
+
